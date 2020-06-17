@@ -227,6 +227,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
             Account account = getAccounts().get(0);
 
             getAccountManager().removeAccount(account, this, null);
+            tearDownActivity();
         } else {
             tearDownActivity();
         }

@@ -68,7 +68,7 @@ public class AlertDialogFragment extends DialogFragment implements DialogInterfa
     }
 
     private void buildSignOutDialog() {
-        builder.setTitle(getString(R.string.sign_out_title))
+            builder.setTitle(getString(R.string.sign_out_title))
             .setMessage(getString(R.string.sign_out_message))
             .setPositiveButton(getString(R.string.sign_out_title), this)
             .setNegativeButton(getString(R.string.cancel), this);
