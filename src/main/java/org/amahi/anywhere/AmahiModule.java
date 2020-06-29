@@ -61,65 +61,116 @@ import org.amahi.anywhere.util.UploadManager;
 
 import javax.inject.Singleton;
 
+import dagger.BindsInstance;
+import dagger.Component;
 import dagger.Module;
 import dagger.Provides;
+import dagger.android.AndroidInjectionModule;
 
 /**
  * Application dependency injection module. Includes {@link org.amahi.anywhere.server.ApiModule} and
  * provides application's {@link android.content.Context} for possible consumers.
  */
-@Module(
-    includes = {
+@Singleton
+@Component(
+    modules = {
+        AndroidInjectionModule.class,
         ApiModule.class,
-        CacheModule.class
-    },
-    injects = {
-        AuthenticationActivity.class,
-        NavigationActivity.class,
-        ServerAppActivity.class,
-        OfflineFilesActivity.class,
-        ServerFilesActivity.class,
-        ServerFileAudioActivity.class,
-        ServerFileImageActivity.class,
-        ServerFileVideoActivity.class,
-        NativeVideoActivity.class,
-        RecentFilesActivity.class,
-        ServerFileWebActivity.class,
-        NavigationFragment.class,
-        ServerSharesFragment.class,
-        ServerAppsFragment.class,
-        ServerFilesFragment.class,
-        ServerFileImageFragment.class,
-        ServerFileAudioFragment.class,
-        ServerFileDownloadingFragment.class,
-        SettingsFragment.class,
-        UploadSettingsFragment.class,
-        AudioListFragment.class,
-        AudioService.class,
-        VideoService.class,
-        MainTVFragment.class,
-        TVWebViewActivity.class,
-        ServerFileTvFragment.class,
-        UploadService.class,
-        DownloadService.class,
-        UploadManager.class,
-        TvPlaybackVideoFragment.class,
-        TvPlaybackVideoActivity.class,
-        TvPlaybackAudioActivity.class,
-        TvPlaybackAudioFragment.class,
-        AudioMetadataRetrievingTask.class
+        CacheModule.class,
+        ActivityModule.class
     }
 )
-class AmahiModule {
-    private final Application application;
+public interface AmahiModule {
 
-    public AmahiModule(Application application) {
-        this.application = application;
+    @Component.Builder
+    interface Builder {
+        @BindsInstance
+        Builder application(Application application);
+        Builder apiModule(ApiModule apiModule);
+        Builder cacheModule(CacheModule cacheModule);
+        AmahiModule build();
     }
 
-    @Provides
-    @Singleton
-    Context provideContext() {
-        return application;
-    }
+    void inject(AmahiApplication amahiApplication);
+
+    void inject(AuthenticationActivity authenticationActivity);
+
+    void inject(NavigationActivity navigationActivity);
+
+    void inject(ServerAppActivity serverAppActivity);
+
+    void inject(OfflineFilesActivity offlineFilesActivity);
+
+    void inject(ServerFilesActivity serverFilesActivity);
+
+    void inject(ServerFileAudioActivity serverFileAudioActivity);
+
+    void inject(ServerFileImageActivity serverFileImageActivity);
+
+    void inject(ServerFileVideoActivity serverFileVideoActivity);
+
+    void inject(NativeVideoActivity nativeVideoActivity);
+
+    void inject(RecentFilesActivity recentFilesActivity);
+
+    void inject(ServerFileWebActivity serverFileWebActivity);
+
+    void inject(NavigationFragment navigationFragment);
+
+    void inject(ServerSharesFragment serverSharesFragment);
+
+    void inject(ServerAppsFragment serverAppsFragment);
+
+    void inject(ServerFilesFragment serverFilesFragment);
+
+    void inject(ServerFileImageFragment serverFileImageFragment);
+
+    void inject(ServerFileAudioFragment serverFileAudioFragment);
+
+    void inject(ServerFileDownloadingFragment serverFileDownloadingFragment);
+
+    void inject(SettingsFragment settingsFragment);
+
+    void inject(UploadSettingsFragment uploadSettingsFragment);
+
+    void inject(AudioListFragment audioListFragment);
+
+    void inject(AudioService audioService);
+
+    void inject(VideoService videoService);
+
+    void inject(MainTVFragment mainTVFragment);
+
+    void inject(TVWebViewActivity tvWebViewActivity);
+
+    void inject(ServerFileTvFragment serverFileTvFragment);
+
+    void inject(UploadService uploadService);
+
+    void inject(DownloadService downloadService);
+
+    void inject(UploadManager uploadManager);
+
+    void inject(TvPlaybackVideoFragment tvPlaybackVideoFragment);
+
+    void inject(TvPlaybackVideoActivity tvPlaybackVideoActivity);
+
+    void inject(TvPlaybackAudioActivity tvPlaybackAudioActivity);
+
+    void inject(TvPlaybackAudioFragment tvPlaybackAudioFragment);
+
+    void inject(AudioMetadataRetrievingTask audioMetadataRetrievingTask);
+//    void inject(Object injectionsConsumer);
+
+//    private final Application application;
+//
+//    public AmahiModule(Application application) {
+//        this.application = application;
+//    }
+//
+//    @Provides
+//    @Singleton
+//    Context provideContext() {
+//        return application;
+//    }
 }

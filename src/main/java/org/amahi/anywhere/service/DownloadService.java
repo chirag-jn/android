@@ -42,6 +42,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import dagger.android.AndroidInjection;
+
 import static org.amahi.anywhere.util.Downloader.OFFLINE_PATH;
 
 public class DownloadService extends Service implements Downloader.DownloadCallbacks {
@@ -78,6 +80,7 @@ public class DownloadService extends Service implements Downloader.DownloadCallb
     }
 
     private void setUpInjections() {
+        AndroidInjection.inject(this);
         AmahiApplication.from(this).inject(this);
     }
 

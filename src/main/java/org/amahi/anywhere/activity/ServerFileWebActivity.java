@@ -41,6 +41,8 @@ import java.util.Set;
 
 import javax.inject.Inject;
 
+import dagger.android.AndroidInjection;
+
 /**
  * Web activity. Shows web resources such as SVG and HTML files.
  * Backed up by {@link android.webkit.WebView}.
@@ -78,6 +80,7 @@ public class ServerFileWebActivity extends AppCompatActivity {
     }
 
     private void setUpInjections() {
+        AndroidInjection.inject(this);
         AmahiApplication.from(this).inject(this);
     }
 

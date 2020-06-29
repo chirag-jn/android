@@ -44,6 +44,8 @@ import java.util.Map;
 
 import javax.inject.Inject;
 
+import dagger.android.AndroidInjection;
+
 /**
  * App activity. Shows web apps contents and allows basic navigation inside them.
  * Backed up by {@link android.webkit.WebView}.
@@ -64,6 +66,7 @@ public class ServerAppActivity extends AppCompatActivity {
     }
 
     private void setUpInjections() {
+        AndroidInjection.inject(this);
         AmahiApplication.from(this).inject(this);
     }
 

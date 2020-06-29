@@ -41,6 +41,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import dagger.android.AndroidInjection;
+
 public class OfflineFilesActivity extends AppCompatActivity {
 
     @Inject
@@ -59,6 +61,7 @@ public class OfflineFilesActivity extends AppCompatActivity {
     }
 
     private void setUpInjections() {
+        AndroidInjection.inject(this);
         AmahiApplication.from(this).inject(this);
     }
 

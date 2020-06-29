@@ -55,6 +55,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import dagger.android.AndroidInjection;
+
 /**
  * Video service. Does all the work related to the video playback.
  */
@@ -87,6 +89,7 @@ public class VideoService extends Service {
     }
 
     private void setUpInjections() {
+        AndroidInjection.inject(this);
         AmahiApplication.from(this).inject(this);
     }
 

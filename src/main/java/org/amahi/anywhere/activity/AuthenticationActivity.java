@@ -52,6 +52,8 @@ import org.amahi.anywhere.util.ViewDirector;
 
 import javax.inject.Inject;
 
+import dagger.android.AndroidInjection;
+
 /**
  * Authentication activity. Allows user authentication. If operation succeed
  * the authentication token is saved at the {@link android.accounts.AccountManager}.
@@ -76,6 +78,7 @@ public class AuthenticationActivity extends AccountAuthenticatorAppCompatActivit
     }
 
     private void setUpInjections() {
+        AndroidInjection.inject(this);
         AmahiApplication.from(this).inject(this);
     }
 

@@ -50,6 +50,8 @@ import java.io.File;
 
 import javax.inject.Inject;
 
+import dagger.android.AndroidInjection;
+
 /**
  * Image fragment. Shows a single image.
  */
@@ -72,6 +74,7 @@ public class ServerFileImageFragment extends Fragment implements RequestListener
     }
 
     private void setUpInjections() {
+        AndroidInjection.inject(getActivity());
         AmahiApplication.from(getActivity()).inject(this);
     }
 

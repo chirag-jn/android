@@ -48,6 +48,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import dagger.android.AndroidInjection;
+
 /**
  * Apps fragment. Shows apps list.
  */
@@ -92,6 +94,7 @@ public class ServerAppsFragment extends Fragment {
     }
 
     private void setUpInjections() {
+        AndroidInjection.inject(getActivity());
         AmahiApplication.from(getActivity()).inject(this);
     }
 

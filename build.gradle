@@ -45,6 +45,9 @@ android {
         versionName buildVersionName(versionMajor, versionMinor, versionPatch)
         versionCode buildVersionCode(versionMajor, versionMinor, versionPatch)
 
+        // For Dagger
+        multiDexEnabled true
+
         minSdkVersion 17
         targetSdkVersion 28
 
@@ -181,6 +184,7 @@ dependencies {
     implementation "com.google.dagger:dagger-android-support:${DAGGER_VERSION}"
     annotationProcessor "com.google.dagger:dagger-compiler:${DAGGER_VERSION}"
     annotationProcessor "com.google.dagger:dagger-android-processor:${DAGGER_VERSION}"
+    implementation 'com.android.support:multidex:1.0.3'
 
     implementation 'com.github.wseemann:FFmpegMediaMetadataRetriever:1.0.14'
     implementation 'com.google.android.exoplayer:exoplayer-core:2.7.3'

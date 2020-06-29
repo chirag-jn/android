@@ -53,6 +53,8 @@ import java.util.Set;
 
 import javax.inject.Inject;
 
+import dagger.android.AndroidInjection;
+
 /**
  * Native Video Player activity. Shows video, supports basic operations such as pausing, resuming.
  * The playback itself is done via {@link org.amahi.anywhere.service}.
@@ -105,6 +107,7 @@ public class NativeVideoActivity extends AppCompatActivity implements
     }
 
     private void setUpInjections() {
+        AndroidInjection.inject(this);
         AmahiApplication.from(this).inject(this);
     }
 

@@ -41,10 +41,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * for possible consumers.
  */
 
-@Module(
-    complete = false,
-    library = true
-)
+@Module
 public class ApiModule {
 
     /**
@@ -54,6 +51,17 @@ public class ApiModule {
      * Add the Chuck interceptor when building OkHttpClient, using:
      * clientBuilder.addInterceptor(chuck);
      */
+
+    private Context context;
+
+    public ApiModule(Context context) {
+        this.context = context;
+    }
+
+    @Provides
+    Context provideContext() {
+        return context;
+    }
 
     @Provides
     @Singleton

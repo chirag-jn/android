@@ -51,6 +51,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import dagger.android.AndroidInjection;
+
 /**
  * Shares fragment. Shows shares list.
  */
@@ -106,6 +108,7 @@ public class ServerSharesFragment extends Fragment implements
     }
 
     private void setUpInjections() {
+        AndroidInjection.inject(getActivity());
         AmahiApplication.from(getActivity()).inject(this);
     }
 

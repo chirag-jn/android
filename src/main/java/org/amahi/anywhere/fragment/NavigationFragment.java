@@ -35,6 +35,8 @@ import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -79,6 +81,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import dagger.android.AndroidInjection;
+
 /**
  * Navigation fragments. Shows main application sections and servers list as well.
  */
@@ -117,6 +121,7 @@ public class NavigationFragment extends Fragment implements AccountManagerCallba
     }
 
     private void setUpInjections() {
+        AndroidInjection.inject(getActivity());
         AmahiApplication.from(getActivity()).inject(this);
     }
 
@@ -317,6 +322,7 @@ public class NavigationFragment extends Fragment implements AccountManagerCallba
     }
 
     private void setUpServersContent(String authenticationToken) {
+        Log.v("Chirag", amahiClient==null?"yes":"no");
         amahiClient.getServers(getContext(), authenticationToken);
     }
 

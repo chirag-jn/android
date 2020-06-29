@@ -44,6 +44,8 @@ import org.amahi.anywhere.util.Fragments;
 
 import javax.inject.Inject;
 
+import dagger.android.AndroidInjection;
+
 /**
  * File downloading dialog.
  */
@@ -87,6 +89,7 @@ public class ServerFileDownloadingFragment extends DialogFragment {
     }
 
     private void setUpInjections() {
+        AndroidInjection.inject(getActivity());
         AmahiApplication.from(getActivity()).inject(this);
     }
 

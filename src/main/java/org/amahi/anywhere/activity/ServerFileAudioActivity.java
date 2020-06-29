@@ -86,6 +86,8 @@ import java.util.Set;
 
 import javax.inject.Inject;
 
+import dagger.android.AndroidInjection;
+
 /**
  * Audio activity. Shows audio, supports basic operations such as pausing, resuming, audio changing.
  * The playback itself is done via {@link org.amahi.anywhere.service.AudioService}.
@@ -145,6 +147,7 @@ public class ServerFileAudioActivity extends AppCompatActivity implements
     }
 
     private void setUpInjections() {
+        AndroidInjection.inject(this);
         AmahiApplication.from(this).inject(this);
     }
 

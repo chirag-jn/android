@@ -60,6 +60,8 @@ import org.amahi.anywhere.util.Preferences;
 
 import javax.inject.Inject;
 
+import dagger.android.AndroidInjection;
+
 /**
  * Navigation activity. This is an entry point of the application. Shows navigation between
  * main application sections (shares, apps) and shares and apps lists itself. On phones the activity
@@ -151,6 +153,7 @@ public class NavigationActivity extends AppCompatActivity implements DrawerLayou
     }
 
     private void setUpInjections() {
+        AndroidInjection.inject(this);
         AmahiApplication.from(this).inject(this);
     }
 

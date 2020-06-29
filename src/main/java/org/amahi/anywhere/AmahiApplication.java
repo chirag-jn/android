@@ -19,6 +19,7 @@
 
 package org.amahi.anywhere;
 
+import android.app.Activity;
 import android.app.Application;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
@@ -31,19 +32,28 @@ import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatDelegate;
 
 
+import org.amahi.anywhere.cache.CacheModule;
 import org.amahi.anywhere.job.NetConnectivityJob;
 import org.amahi.anywhere.job.PhotosContentJob;
+import org.amahi.anywhere.server.ApiModule;
 
-import dagger.ObjectGraph;
+import javax.inject.Inject;
 
+import dagger.android.AndroidInjection;
+import dagger.android.AndroidInjector;
+import dagger.android.DispatchingAndroidInjector;
+import dagger.android.HasAndroidInjector;
 import timber.log.Timber;
 
 /**
  * Application declaration. Basically sets things up at the startup time,
  * such as dependency injection, logging, crash reporting and possible ANR detecting.
  */
-public class AmahiApplication extends Application {
-    private ObjectGraph injector;
+public class AmahiApplication extends Application implements HasAndroidInjector {
+//    private AmahiModule injector;
+
+    @Inject
+    DispatchingAndroidInjector<Object> activityDispatchingAndroidInjector;
 
     private static final String UPLOAD_CHANNEL_ID = "file_upload";
     private static final String DOWNLOAD_CHANNEL_ID = "file_download";
@@ -123,11 +133,23 @@ public class AmahiApplication extends Application {
     }
 
     private void setUpInjections() {
-        injector = ObjectGraph.create(new AmahiModule(this));
+        DaggerAmahiModule.builder()
+            .application(instance)
+            .apiModule(new ApiModule(getApplicationContext()))
+            .cacheModule(new CacheModule(getApplicationContext()))
+            .build()
+            .inject(instance);
+//        injector = ObjectGraph.create(new AmahiModule(this));
     }
 
+//    public AmahiModule getInjector() {
+//        return injector;
+//    }
+
     public void inject(Object injectionsConsumer) {
-        injector.inject(injectionsConsumer);
+        // Do nothing
+//        AndroidInjection.inject((injectionsConsumer.getClass()) injectionsConsumer);
+//        injector.inject(injectionsConsumer);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -138,6 +160,11 @@ public class AmahiApplication extends Application {
         if (!NetConnectivityJob.isScheduled(this)) {
             NetConnectivityJob.scheduleJob(this);
         }
+    }
+
+    @Override
+    public AndroidInjector<Object> androidInjector() {
+        return activityDispatchingAndroidInjector;
     }
 
     public static class JobIds {

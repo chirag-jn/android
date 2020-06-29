@@ -28,6 +28,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import dagger.android.AndroidInjection;
+
 public class AudioListFragment extends Fragment implements RecyclerViewItemClickListener {
 
     public static final String TAG = "audio_list_fragment";
@@ -56,6 +58,7 @@ public class AudioListFragment extends Fragment implements RecyclerViewItemClick
     }
 
     private void setUpInjections() {
+        AndroidInjection.inject();
         AmahiApplication.from(getActivity()).inject(this);
     }
 

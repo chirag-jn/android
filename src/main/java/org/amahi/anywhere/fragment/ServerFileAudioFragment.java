@@ -30,6 +30,8 @@ import org.amahi.anywhere.util.Fragments;
 
 import javax.inject.Inject;
 
+import dagger.android.AndroidInjection;
+
 /**
  * Audio fragment. Shows a single audio cover image.
  */
@@ -53,6 +55,7 @@ public class ServerFileAudioFragment extends Fragment {
     }
 
     private void setUpInjections() {
+        AndroidInjection.inject(getActivity());
         AmahiApplication.from(getActivity()).inject(this);
     }
 

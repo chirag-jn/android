@@ -94,6 +94,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import dagger.android.AndroidInjection;
+
 /**
  * Audio server. Does all the work related to the audio playback.
  * Places information at {@link android.app.Notification} and {@link MediaSessionCompat},
@@ -157,6 +159,7 @@ public class AudioService extends MediaBrowserServiceCompat implements
     }
 
     private void setUpInjections() {
+        AndroidInjection.inject(this);
         AmahiApplication.from(this).inject(this);
     }
 

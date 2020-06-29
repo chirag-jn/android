@@ -58,6 +58,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import dagger.android.AndroidInjection;
+
 /**
  * Settings fragment. Shows application's settings.
  */
@@ -81,6 +83,7 @@ public class SettingsFragment extends PreferenceFragmentCompat implements
     }
 
     private void setUpInjections() {
+        AndroidInjection.inject(getActivity());
         AmahiApplication.from(getActivity()).inject(this);
     }
 

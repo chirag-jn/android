@@ -55,6 +55,8 @@ import java.util.ArrayList;
 
 import javax.inject.Inject;
 
+import dagger.android.AndroidInjection;
+
 /**
  * File upload service
  */
@@ -86,6 +88,7 @@ public class UploadService extends Service implements UploadManager.UploadCallba
     }
 
     private void setUpInjections() {
+        AndroidInjection.inject(this);
         AmahiApplication.from(this).inject(this);
     }
 

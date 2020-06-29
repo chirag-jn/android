@@ -74,6 +74,8 @@ import java.util.Set;
 
 import javax.inject.Inject;
 
+import dagger.android.AndroidInjection;
+
 /**
  * Image activity. Shows images as a slide show.
  * Backed up by {@link org.amahi.anywhere.view.TouchImageView}.
@@ -139,6 +141,7 @@ public class ServerFileImageActivity extends AppCompatActivity implements
     }
 
     private void setUpInjections() {
+        AndroidInjection.inject(this);
         AmahiApplication.from(this).inject(this);
     }
 

@@ -82,6 +82,8 @@ import java.util.List;
 
 import javax.inject.Inject;
 
+import dagger.android.AndroidInjection;
+
 /**
  * Video activity. Shows videos, supports basic operations such as pausing, resuming, scrolling.
  * The playback itself is done via {@link org.amahi.anywhere.service.VideoService}.
@@ -149,6 +151,7 @@ public class ServerFileVideoActivity extends AppCompatActivity implements
     }
 
     private void setUpInjections() {
+        AndroidInjection.inject(this);
         AmahiApplication.from(this).inject(this);
     }
 

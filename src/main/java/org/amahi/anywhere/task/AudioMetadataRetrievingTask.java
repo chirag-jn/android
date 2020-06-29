@@ -19,6 +19,7 @@
 
 package org.amahi.anywhere.task;
 
+import android.app.Service;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -45,6 +46,8 @@ import java.lang.ref.WeakReference;
 import java.util.HashMap;
 
 import javax.inject.Inject;
+
+import dagger.android.AndroidInjection;
 
 /**
  * Async wrapper for audio metadata retrieving.
@@ -103,6 +106,7 @@ public class AudioMetadataRetrievingTask extends AsyncTask<Void, Void, BusEvent>
     }
 
     private void setUpInjections(Context context) {
+        AndroidInjection.inject((Service) this);
         AmahiApplication.from(context).inject(this);
     }
 
