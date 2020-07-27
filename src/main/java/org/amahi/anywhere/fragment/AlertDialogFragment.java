@@ -1,26 +1,25 @@
 package org.amahi.anywhere.fragment;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-
-import android.app.AlertDialog;
-
-import androidx.fragment.app.DialogFragment;
-
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.DialogFragment;
+
 import org.amahi.anywhere.R;
 import org.amahi.anywhere.db.repositories.FileInfoRepository;
+import org.amahi.anywhere.util.Constants;
 import org.amahi.anywhere.util.Fragments;
 
 import java.io.File;
 
 public class AlertDialogFragment extends DialogFragment implements DialogInterface.OnClickListener {
+
     File file;
     private int dialogType = -1;
     private String fileUniqueKey;
@@ -29,8 +28,11 @@ public class AlertDialogFragment extends DialogFragment implements DialogInterfa
     public static final int DUPLICATE_FILE_DIALOG = 1;
     public static final int SIGN_OUT_DIALOG = 3;
     public static final int FILE_INFO_DIALOG = 2;
-    public static final String LAST_OPENED_NULL = "Never opened";
 
+    private String parentStr;
+    private String nameStr;
+    private String dateStr;
+    private String sizeStr;
 
     @NonNull
     @Override
@@ -53,6 +55,12 @@ public class AlertDialogFragment extends DialogFragment implements DialogInterfa
                 break;
 
             case FILE_INFO_DIALOG:
+                if (getArguments() != null) {
+                    nameStr = getArguments().getString(Fragments.Arguments.FILE_NAME);
+                    parentStr = getArguments().getString(Fragments.Arguments.PARENT_FOLDER);
+                    sizeStr = getFileSize();
+                    dateStr = getArguments().getString(Fragments.Arguments.FILE_DATE);
+                }
                 buildFileInfoDialog();
                 break;
 
@@ -77,19 +85,41 @@ public class AlertDialogFragment extends DialogFragment implements DialogInterfa
             .setPositiveButton(getString(R.string.button_yes), this)
             .setNegativeButton(getString(R.string.button_no), this);
     }
+
     private void buildFileInfoDialog() {
         View view = getActivity().getLayoutInflater().inflate(R.layout.file_info_dialog, null);
-        TextView lastOpened = view.findViewById(R.id.text_last_opened);
-        lastOpened.setText(getFileLastOpened());
+        setFileInfoView(view);
         builder.setTitle(getString(R.string.title_file_info))
             .setPositiveButton(getString(R.string.text_ok), this);
         builder.setView(view);
     }
 
+    private void setFileInfoView(View view) {
+        TextView lastOpened = view.findViewById(R.id.text_last_opened);
+        TextView name = view.findViewById(R.id.text_name);
+        TextView date = view.findViewById(R.id.text_date);
+        TextView size = view.findViewById(R.id.text_size);
+        TextView parent = view.findViewById(R.id.text_folder);
+        name.setText(nameStr);
+        date.setText(dateStr);
+        size.setText(sizeStr);
+        parent.setText(parentStr);
+        lastOpened.setText(getFileLastOpened());
+    }
+
+    private String getFileSize() {
+        if(getArguments()!=null) {
+            float size = Float.parseFloat(getArguments().getString(Fragments.Arguments.FILE_SIZE));
+            size = (size/1000)/1000;
+            return size + " " + Constants.MB;
+        }
+        return getString(R.string.empty);
+    }
+
     private String getFileLastOpened() {
         FileInfoRepository fileInfoRepository = new FileInfoRepository(getContext());
         if (fileInfoRepository.getFileInfo(fileUniqueKey) == null) {
-            return LAST_OPENED_NULL;
+            return getString(R.string.never_opened);
         }
         return fileInfoRepository.getFileInfo(fileUniqueKey).getLastOpened();
     }

@@ -19,7 +19,7 @@
 
 <resources>
 
-<!--    Please update the Strings here: https://docs.google.com/spreadsheets/d/1NAl8xWGDRj6MmLHKyESONAAyudOHdFnSbaqF1Pr28sE/edit?usp=sharing-->
+<!--    Please update the Strings here: https://docs.google.com/spreadsheets/d/1NAl8xWGDRj6MmLHKyESONAAyudOHdFnSbaqF1Pr28sE/edit?usp=sharing -->
 
     <string name="application_name" translatable="false">Amahi</string>
 
@@ -188,8 +188,15 @@
     <string name="alert_delete_dialog">Delete file</string>
     <string name="alert_delete_confirm">Are you sure?</string>
 
+    <string name="empty" translatable="false">Null</string>
     <string name="title_file_info">File Info</string>
-    <string name="text_ok">OK</string>
+    <string name="text_ok">Ok</string>
+    <string name="never_opened">Never Opened</string>
+    <string name="last_opened">Last Opened</string>
+    <string name="name">Name</string>
+    <string name="name_folder">Folder</string>
+    <string name="file_size">Size</string>
+    <string name="file_date">Date</string>
 
     <string name="title_selected_server">Server</string>
 
