@@ -44,6 +44,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.appcompat.widget.SearchView;
 
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -459,7 +460,11 @@ public class ServerFilesFragment extends Fragment implements
         AlertDialogFragment fileInfoDialog = new AlertDialogFragment();
         Bundle bundle = new Bundle();
         bundle.putInt(Fragments.Arguments.DIALOG_TYPE, AlertDialogFragment.FILE_INFO_DIALOG);
-        bundle.putSerializable("file_unique_key", uniqueKey);
+        bundle.putSerializable(Fragments.Arguments.FILE_UNIQUE_KEY, uniqueKey);
+        bundle.putString(Fragments.Arguments.FILE_NAME, getCheckedFile().getName());
+        bundle.putString(Fragments.Arguments.PARENT_FOLDER, getCheckedFile().getParentFile().getName());
+        bundle.putString(Fragments.Arguments.FILE_SIZE, String.valueOf(getCheckedFile().getSize()));
+        bundle.putString(Fragments.Arguments.FILE_DATE, getCheckedFile().getModificationTime().toString());
         fileInfoDialog.setArguments(bundle);
         fileInfoDialog.setTargetFragment(this, 2);
         fileInfoDialog.show(getFragmentManager(), "file_info_dialog");

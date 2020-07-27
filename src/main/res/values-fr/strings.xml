@@ -165,6 +165,15 @@
     <string name="intro_title_6">Prêt</string>
     <string name="intro_desc_6">Vous être prêt. Merci d\'utiliser Amahi.</string>
 
+    <string name="title_file_info">Informations sur le fichier</string>
+    <string name="text_ok">D\'accord</string>
+    <string name="never_opened">Jamais Ouvert</string>
+    <string name="last_opened">Dernière Ouverture</string>
+    <string name="name">Nom</string>
+    <string name="name_folder">Dossier</string>
+    <string name="file_size">Taille</string>
+    <string name="file_date">Date</string>
+
     <string name="alert_delete_dialog">Supprimer le fichier</string>
     <string name="alert_delete_confirm">Êtes-vous sûr?</string>
     <string name="language_en">Anglais</string>

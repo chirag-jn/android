@@ -60,6 +60,10 @@ public final class Fragments {
         public static final String IS_OFFLINE_FRAGMENT = "is_offline_fragment";
         public static final String DIALOG_TYPE = "dialog_type";
         public static final String FILE_UNIQUE_KEY = "file_unique_key";
+        public static final String FILE_NAME = "file_name";
+        public static final String PARENT_FOLDER = "parent_folder";
+        public static final String FILE_DATE = "file_date";
+        public static final String FILE_SIZE = "file_size";
 
         private Arguments() {
         }
