@@ -36,5 +36,5 @@ before_script:
 script:
     - ./gradlew connectedDebugAndroidTest
 
-notifications:
-    email: false
+# notifications:
+#     email: false
