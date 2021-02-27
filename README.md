@@ -11,7 +11,7 @@
 
 This repository contains the source code for the Amahi Android app.
 
-You will need JDK 1.8+ installed to work with it. Gradle, Android SDK, and project dependencies will be downloaded automatically.
+You will need JDK 1.8+ installed to with it. Gradle, Android SDK, and project dependencies will be downloaded automatically.
 
 ## Building the app
 
