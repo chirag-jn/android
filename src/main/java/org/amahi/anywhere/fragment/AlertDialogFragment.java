@@ -1,18 +1,15 @@
 package org.amahi.anywhere.fragment;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-
-import android.app.AlertDialog;
-
-import androidx.fragment.app.DialogFragment;
-
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.DialogFragment;
 
 import org.amahi.anywhere.R;
 import org.amahi.anywhere.db.repositories.FileInfoRepository;
@@ -29,7 +26,6 @@ public class AlertDialogFragment extends DialogFragment implements DialogInterfa
     public static final int DUPLICATE_FILE_DIALOG = 1;
     public static final int SIGN_OUT_DIALOG = 3;
     public static final int FILE_INFO_DIALOG = 2;
-    public static final String LAST_OPENED_NULL = "Never opened";
 
 
     @NonNull
@@ -79,6 +75,7 @@ public class AlertDialogFragment extends DialogFragment implements DialogInterfa
             .setPositiveButton(getString(R.string.button_yes), this)
             .setNegativeButton(getString(R.string.button_no), this);
     }
+
     private void buildFileInfoDialog() {
         View view = getActivity().getLayoutInflater().inflate(R.layout.file_info_dialog, null);
         TextView lastOpened = view.findViewById(R.id.text_last_opened);
@@ -92,7 +89,7 @@ public class AlertDialogFragment extends DialogFragment implements DialogInterfa
     private String getFileLastOpened() {
         FileInfoRepository fileInfoRepository = new FileInfoRepository(getContext());
         if (fileInfoRepository.getFileInfo(fileUniqueKey) == null) {
-            return LAST_OPENED_NULL;
+            return getString(R.string.never_opened);
         }
         return fileInfoRepository.getFileInfo(fileUniqueKey).getLastOpened();
     }
