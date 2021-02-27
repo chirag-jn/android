@@ -202,6 +202,7 @@
     <string name="language_de">German</string>
     <string name="language_te">Telugu</string>
     <string name="language_hi">Hindi</string>
+    <string name="language_pa">Punjabi</string>
 
     <string name="language_en_key" translatable="false">en</string>
     <string name="language_fr_key" translatable="false">fr</string>
@@ -210,6 +211,7 @@
     <string name="language_de_key" translatable="false">gem</string>
     <string name="language_te_key" translatable="false">te</string>
     <string name="language_hi_key" translatable="false">hi</string>
+    <string name="language_pa_key" translatable="false">pa</string>
 
 
     <!--    Preferences-->
